@@ -74,7 +74,7 @@ impl Command {
                 ([0xD5, ((0xF & fosc) << 4) | (0xF & div), 0, 0, 0, 0, 0], 2)
             }
             Command::PreChargePeriod(phase1, phase2) => (
-                [0xD9, ((0xF & phase2) << 4) | (0xF & phase1), 0, 0, 0, 0, 0],
+                [0xD9, ((0xF & phase1) << 4) | (0xF & phase2), 0, 0, 0, 0, 0],
                 2,
             ),
             Command::VcomhDeselect(level) => ([0xDB, (level as u8) << 4, 0, 0, 0, 0, 0], 2),

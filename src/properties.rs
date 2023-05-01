@@ -65,11 +65,14 @@ where
             | DisplaySize::Display132x64 => Command::ComPinConfig(true).send(&mut self.iface),
         }?;
 
-        Command::Contrast(0x80).send(&mut self.iface)?;
+        Command::Contrast(0xff).send(&mut self.iface)?;
         Command::PreChargePeriod(0x1, 0xF).send(&mut self.iface)?;
-        Command::VcomhDeselect(VcomhLevel::Auto).send(&mut self.iface)?;
-        Command::AllOn(false).send(&mut self.iface)?;
+        Command::VcomhDeselect(VcomhLevel::V077).send(&mut self.iface)?;
+        self.iface.send_commands(&[0x20, 0x20])?;
+        self.iface.send_commands(&[0x33])?;
         Command::Invert(false).send(&mut self.iface)?;
+        Command::AllOn(false).send(&mut self.iface)?;
+        // Command::AllOn(true).send(&mut self.iface)?;
         Command::DisplayOn(true).send(&mut self.iface)?;
 
         Ok(())

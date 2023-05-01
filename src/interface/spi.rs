@@ -36,6 +36,12 @@ where
 
     fn init(&mut self) -> Result<(), Self::Error> {
         self.cs.set_high().map_err(Error::Pin)
+        // set DC high
+        // set RESET high
+        // set RESET low
+        // delay 1000us
+        // set RESET high
+        // delay 1000us
     }
 
     fn send_commands(&mut self, cmds: &[u8]) -> Result<(), Self::Error> {
